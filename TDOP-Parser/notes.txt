@@ -1,0 +1,35 @@
+
+Implementing a Top Down Recursive Decent Parser AKA Pratt Parsing
+
+NOTES: 
+
+	- Hard code the tokens for now - main focus is to parse to a nice data structure
+	- Tokens -> Specific Class Object that implements interface 'Expression' - used for pretty printing
+	- Multiple subclasses implement the Expression interface. Eg ConditionalExpression
+	- The entire purpose of using a vector is to push back values known at runtime
+	  Will have to read from a file of mock token list later on
+
+Interfaces:
+	- Expression : Implemented by ConditionalExpression
+	- PrefixParselet : Implemented by NameParselet -> Return NameExpression, PrefixOperatorParselet -> PrefixExpression
+
+THINGS I DON'T UNDERSTAND
+	- The entire concept of top-down recursive descent parsing!
+	- Token of lookahead LL(1)
+	-  Registering of the infix and prefix operators into the arrayLists - will do later
+
+
+GENERAL KNOWLEDGE:
+	- The base class defines as virtual those functions it expects its derived classes to define for themselves.
+	- Research file naming convention on different systems. Apparently the convention is to use all lowercase letters
+
+Issue imo: Abstract class cannot be passed as an argument
+How to use the override keyword?
+Need to define destructor for NameExpression and others? Include 
+the delete thingy too
+
+Comment: ctrl+k+c 
+UnComment: ctrl+k+u
+
+
+
