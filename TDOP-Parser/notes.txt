@@ -31,5 +31,8 @@ the delete thingy too
 Comment: ctrl+k+c 
 UnComment: ctrl+k+u
 
+Learned about header guards! 
+
+
 
 

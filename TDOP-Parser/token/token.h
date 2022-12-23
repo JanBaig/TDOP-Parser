@@ -1,3 +1,6 @@
+#ifndef TOKEN
+#define TOKEN
+
 #include <string>
 
 class Token {
@@ -17,4 +20,6 @@ public:
 
 	Token(TokenType type, std::string text) : type(type), text(text) {};
 
-};
+}; 
+
+#endif

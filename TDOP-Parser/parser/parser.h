@@ -1,3 +1,6 @@
+#ifndef PARSER
+#define PARSER
+
 #include <vector>
 #include <string>
 
@@ -12,3 +15,5 @@ public:
 	Parser(std::vector<Token> tokenStream) : tokenStream(tokenStream) {};
 
 };
+
+#endif 

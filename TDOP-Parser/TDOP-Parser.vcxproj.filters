@@ -21,6 +21,12 @@
     <ClCompile Include="parser\parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="expressions\name_expression\name_expression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parselet\name_parselet\name_parselet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes.txt" />
@@ -30,6 +36,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="token\token.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parselet\interface_prefix_parselet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="expressions\interface_expression.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="expressions\name_expression\name_expression.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parselet\name_parselet\name_parselet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
