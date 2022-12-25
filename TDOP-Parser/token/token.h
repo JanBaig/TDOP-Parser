@@ -12,14 +12,14 @@ public:
 		MINUS, 
 		NAME, 
 		MULT, 
-		INTEGER
+		INTEGER, 
+		EOL
 	};
 
 	TokenType type;
 	std::string text;
 
 	Token(TokenType type, std::string text) : type(type), text(text) {};
-
 }; 
 
 #endif

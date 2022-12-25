@@ -31,7 +31,9 @@ the delete thingy too
 Comment: ctrl+k+c 
 UnComment: ctrl+k+u
 
-Learned about header guards! 
+Learned about header guards!  
+Read up on polymorphism in c++ - are pointers necessary? 
+Search up smart pointers as well
 
 
 

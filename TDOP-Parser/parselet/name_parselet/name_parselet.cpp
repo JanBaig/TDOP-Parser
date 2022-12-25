@@ -3,6 +3,5 @@
 
 InterfaceExpression* NameParselet::parse(Parser parser, Token token)
 {
-	NameExpression* testing = new NameExpression();
-	return testing;
+	return new NameExpression(token.text);
 }
