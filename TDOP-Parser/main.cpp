@@ -20,19 +20,9 @@ int main() {
 
 	Parser parser(tokenStream);  
 
-	for (Token* i = parser.currToken; i->type != Token::TokenType::EOL; i = parser.consume()) {
-
-		std::cout << i->text << std::endl;
-
-	} 
-
 	parser.registerPrefix(Token::TokenType::NAME, new NameParselet());
 
-	for (auto i = parser.prefixMap.begin(); i != parser.prefixMap.end(); i++) {
-		
-		std::cout << i->first << " : " << i->second << std::endl;
-
-	}
+	parser.parseExpression(); 
 
 } 
 

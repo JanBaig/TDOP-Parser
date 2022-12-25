@@ -23,9 +23,10 @@ public:
 
 	Token* consume();
 	void registerPrefix(Token::TokenType type, InterfacePrefixParselet* ptr);
-
-	//InterfaceExpression* parseExpression();
-
+	void parseExpression();
+	
+	// InterfaceExpression* parseExpression();
+	
 };
 
 #endif 
