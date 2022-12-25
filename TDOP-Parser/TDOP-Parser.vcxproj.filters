@@ -27,6 +27,12 @@
     <ClCompile Include="parselet\name_parselet\name_parselet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="parselet\integer_parselet\integer_parselet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="expressions\integer_expression\integer_expression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes.txt" />
@@ -48,6 +54,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="parselet\name_parselet\name_parselet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parselet\integer_parselet\integer_parselet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="expressions\integer_expression\integer_expression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

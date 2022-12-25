@@ -2,6 +2,7 @@
 #include <iostream>
 #include "../parselet/interface_prefix_parselet.h" // what was the forward declaration for then?
 
+// Returns the next token
 Token* Parser::consume() {
 
 	return ++Parser::currToken; 
@@ -25,14 +26,16 @@ void Parser::parseExpression() {
 
 	// Should include a getter .getCurrToken()
 	// Check if currToken inside of the prefixMap
+	// call the print() method on class InterfaceExpression. then consume next token
 
 	auto prefix = Parser::prefixMap.find(currToken->type); 
 
-	if (prefix == Parser::prefixMap.end()) { std::cout << "ERROR: Not Found"; } 
+	if (prefix == Parser::prefixMap.end()) { std::cout << "ERROR: Not Found"; return; }
 	
 	InterfacePrefixParselet* parselet = Parser::prefixMap[currToken->type];
-	InterfaceExpression* expression = parselet->parse(*this, *currToken);
+	InterfaceExpression* leftExpression = parselet->parse(*this, *currToken);
 
-	std::cout << expression->print() << std::endl; // get on appending to some sort of string builder?
+	std::cout << leftExpression->print() << std::endl; 
+
 }
 

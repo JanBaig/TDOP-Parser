@@ -4,6 +4,7 @@
 
 #include "parser/parser.h"
 #include "parselet/name_parselet/name_parselet.h"
+#include "parselet/integer_parselet/integer_parselet.h"
 
 int main() {
 
@@ -21,6 +22,7 @@ int main() {
 	Parser parser(tokenStream);  
 
 	parser.registerPrefix(Token::TokenType::NAME, new NameParselet());
+	parser.registerPrefix(Token::TokenType::INTEGER, new IntegerParselet());
 
 	parser.parseExpression(); 
 
