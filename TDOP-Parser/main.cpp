@@ -14,6 +14,8 @@ int main() {
 		Token(Token::TokenType::INTEGER, "2"),
 		Token(Token::TokenType::PLUS, "+"),
 		Token(Token::TokenType::INTEGER, "3"),
+		Token(Token::TokenType::PLUS, "*"),
+		Token(Token::TokenType::INTEGER, "10"),
 		Token(Token::TokenType::EOL, "EOL")
 	};
 
@@ -25,9 +27,7 @@ int main() {
 	parser.registerInfix(Token::TokenType::MINUS, new OperatorParselet());
 	parser.registerInfix(Token::TokenType::MULT, new OperatorParselet());
 
-	// parser.printMaps();
-
-	InterfaceExpression* testing = parser.parseExpression();
+	InterfaceExpression* testing = parser.parseExpression(0);
 	std::cout << testing->print() << std::endl;
 } 
 

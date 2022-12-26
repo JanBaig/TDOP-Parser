@@ -31,21 +31,39 @@ void Parser::printMaps() {
 	}
 }
 
-InterfaceExpression* Parser::parseExpression() {
+int Parser::getPrecedenceNext() {
+	// Gets precedence for the next token
+	Token* old = Parser::currToken;
+	old++;
+	int precedence = Parser::precedenceMap[old->type];
+	return precedence;
+}  
+
+int Parser::getPrecedenceCurr() {
+	// Gets precedence for the next token
+	int precedence = Parser::precedenceMap[Parser::currToken->type];
+	return precedence;
+}
+
+
+InterfaceExpression* Parser::parseExpression(int precedence) {
 	// Should consume the next token from here
 	auto prefix = Parser::prefixMap.find(currToken->type); 
 	if (prefix == Parser::prefixMap.end()) { std::cout << "ERROR: Prefix Not Found"; exit(0); }
 	
 	InterfacePrefixParselet* prefixParselet = Parser::prefixMap[currToken->type];
 	InterfaceExpression* leftExpression = prefixParselet->parse(*this, *currToken);
+;
+ 	while (precedence < getPrecedenceNext()) { // next token have a higher precedence?
+		consume(); 
 
-	 Token* token = consume(); // should be lookahead without consuming
-	 auto infix = Parser::infixMap.find(currToken->type);
-	 if (infix == Parser::infixMap.end()) { return leftExpression; }
+		auto infix = Parser::infixMap.find(currToken->type);
+		if (infix == Parser::infixMap.end()) { return leftExpression; }
 
-	 InterfaceInfixParselet* infixParselet = Parser::infixMap[currToken->type];
-	 InterfaceExpression* binaryExpression = infixParselet->parse(*this, leftExpression, *currToken);
+		InterfaceInfixParselet* infixParselet = Parser::infixMap[currToken->type];
+		leftExpression = infixParselet->parse(*this, leftExpression, *currToken);
+	}
 
-	return binaryExpression;
+	return leftExpression;
 }
 
