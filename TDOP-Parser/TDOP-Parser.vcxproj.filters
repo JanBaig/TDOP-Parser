@@ -33,6 +33,12 @@
     <ClCompile Include="expressions\integer_expression\integer_expression.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="parselet\operator_parselet\operator_parselet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="expressions\operator_expression\operator_expression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes.txt" />
@@ -60,6 +66,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="expressions\integer_expression\integer_expression.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parselet\interface_infix_parselet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parselet\operator_parselet\operator_parselet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="expressions\operator_expression\operator_expression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

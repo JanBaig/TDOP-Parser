@@ -12,7 +12,6 @@ public:
 	IntegerExpression(std::string tokenText) : tokenText(tokenText) {};
 
 	std::string print();
-
 };
 
 #endif

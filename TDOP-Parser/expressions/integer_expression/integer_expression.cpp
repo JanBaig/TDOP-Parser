@@ -3,6 +3,5 @@
 
 std::string IntegerExpression::print() {
 
-	return IntegerExpression::tokenText.append(" : Integer Data Struc");
-
+	return IntegerExpression::tokenText.append("	: INTEGER Data Struc");
 }

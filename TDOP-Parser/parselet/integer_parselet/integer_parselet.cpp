@@ -4,5 +4,4 @@
 InterfaceExpression* IntegerParselet::parse(Parser parse, Token token) {
 
 	return new IntegerExpression(token.text);
-
-}
+} 

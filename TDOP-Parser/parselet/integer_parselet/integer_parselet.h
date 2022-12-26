@@ -10,7 +10,6 @@ public:
 	IntegerParselet() = default;
 
 	InterfaceExpression* parse(Parser parse, Token token);
-	
 };
 
 

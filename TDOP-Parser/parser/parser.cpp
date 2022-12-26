@@ -1,41 +1,51 @@
 #include "parser.h"
 #include <iostream>
 #include "../parselet/interface_prefix_parselet.h" // what was the forward declaration for then?
+#include "../parselet/interface_infix_parselet.h"
 
-// Returns the next token
 Token* Parser::consume() {
-
+	// Returns the next token
 	return ++Parser::currToken; 
-
 }
 
 void Parser::registerPrefix(Token::TokenType type, InterfacePrefixParselet* ptr) { 
-
+	
 	Parser::prefixMap[type] = ptr;
+} 
+
+void Parser::registerInfix(Token::TokenType type, InterfaceInfixParselet* ptr) {
+	
+	Parser::infixMap[type] = ptr;
 }
 
-//InterfaceExpression* Parser::parseExpression() {
-//
-//	// prefixInterfaceParselet -> nameparselet -> nameexpression
-//	// check if the current token belongs to the prefix category
-//	// will need to register the token inside of the prefixHashmaps first
-//	// How do integers get parsed? isn't there an Integer token?
-//}
+void Parser::printMaps() {
 
-void Parser::parseExpression() {
+	std::cout << "Prefix:\n";
+	for (auto i = Parser::prefixMap.begin(); i != Parser::prefixMap.end(); i++) {
+		std::cout << i->first << std::endl;
+	} 
 
-	// Should include a getter .getCurrToken()
-	// Check if currToken inside of the prefixMap
-	// call the print() method on class InterfaceExpression. then consume next token
+	std::cout << "Infix\n";
+	for (auto i = Parser::infixMap.begin(); i != Parser::infixMap.end(); i++) {
+		std::cout << i->first << std::endl;
+	}
+}
 
+InterfaceExpression* Parser::parseExpression() {
+	// Should consume the next token from here
 	auto prefix = Parser::prefixMap.find(currToken->type); 
-
-	if (prefix == Parser::prefixMap.end()) { std::cout << "ERROR: Not Found"; return; }
+	if (prefix == Parser::prefixMap.end()) { std::cout << "ERROR: Prefix Not Found"; exit(0); }
 	
-	InterfacePrefixParselet* parselet = Parser::prefixMap[currToken->type];
-	InterfaceExpression* leftExpression = parselet->parse(*this, *currToken);
+	InterfacePrefixParselet* prefixParselet = Parser::prefixMap[currToken->type];
+	InterfaceExpression* leftExpression = prefixParselet->parse(*this, *currToken);
 
-	std::cout << leftExpression->print() << std::endl; 
+	 Token* token = consume(); // should be lookahead without consuming
+	 auto infix = Parser::infixMap.find(currToken->type);
+	 if (infix == Parser::infixMap.end()) { return leftExpression; }
 
+	 InterfaceInfixParselet* infixParselet = Parser::infixMap[currToken->type];
+	 InterfaceExpression* binaryExpression = infixParselet->parse(*this, leftExpression, *currToken);
+
+	return binaryExpression;
 }
 

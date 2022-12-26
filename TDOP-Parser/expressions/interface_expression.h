@@ -6,8 +6,8 @@
 class InterfaceExpression {
 
 public:
-	virtual std::string print() = 0;
 
+	virtual std::string print() = 0;
 };
 
 #endif 

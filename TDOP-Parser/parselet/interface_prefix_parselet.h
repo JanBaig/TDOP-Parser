@@ -7,8 +7,8 @@
 class InterfacePrefixParselet {
 
 public:
-	virtual InterfaceExpression* parse(Parser parser, Token token) = 0; 
 
+	virtual InterfaceExpression* parse(Parser parser, Token token) = 0; 
 };
 
 #endif

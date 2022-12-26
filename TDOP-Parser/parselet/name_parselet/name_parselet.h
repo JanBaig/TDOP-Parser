@@ -10,7 +10,6 @@ public:
 	NameParselet() = default;
 
 	InterfaceExpression* parse(Parser parser, Token token);
-
 };
 
 #endif

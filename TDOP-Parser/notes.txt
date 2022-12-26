@@ -36,5 +36,15 @@ Read up on polymorphism in c++ - are pointers necessary?
 Search up smart pointers as well
 
 =0 after a virtual function override is an error! Only use =0  for the abstract class
+---------------------------------
+
+Main Implementation
+
+Parselets:
+	- Binary Operators : Implements InfixParselet (+, - , *)
+	- Name			   : Implements PrefixParselet
+	- Integer		   : Implements PrefixParselet
+
+Prefix can shift into one single class....
 
 
