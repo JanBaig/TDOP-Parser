@@ -3,5 +3,5 @@
 
 std::string IntegerExpression::print() {
 
-	return IntegerExpression::tokenText;
+	return "[" + IntegerExpression::tokenText + "]";
 }

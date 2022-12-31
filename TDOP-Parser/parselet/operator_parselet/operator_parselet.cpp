@@ -3,9 +3,10 @@
 
 InterfaceExpression* OperatorParselet::parse(Parser parser, InterfaceExpression* left, Token token) {
 	
-	int testing = parser.getPrecedenceCurr();
+	int testing = parser.getPrecedence();
 	parser.consume();
 	InterfaceExpression* right = parser.parseExpression(testing); // this gets
 	return new OperatorExpression(left, token.text, right);
 
 }
+

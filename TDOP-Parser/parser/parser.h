@@ -17,7 +17,8 @@ class Parser {
 public: 
 
 	std::vector<Token> tokenStream;
-	Token* currToken = &tokenStream[0];  
+	Token* currToken = &tokenStream[0];
+	Token* nextToken = currToken;
 	std::map<Token::TokenType, InterfacePrefixParselet*> prefixMap;
 	std::map<Token::TokenType, InterfaceInfixParselet*> infixMap;
 	std::map<Token::TokenType, int> precedenceMap = {
@@ -29,13 +30,15 @@ public:
 	Parser(std::vector<Token> tokenStream) : tokenStream(tokenStream) {};
 
 	Token* consume();
+	Token* lookAhead();
 	void registerPrefix(Token::TokenType type, InterfacePrefixParselet* ptr);
 	void registerInfix(Token::TokenType type, InterfaceInfixParselet* ptr);
 	void printMaps();
 	int getPrecedenceNext();
-	int getPrecedenceCurr();
+	int getPrecedence();
 
 	InterfaceExpression* parseExpression(int precedence);
-};
+	std::string testing(int precedence);
+};	
 
 #endif 

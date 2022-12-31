@@ -27,7 +27,7 @@ int main() {
 	parser.registerInfix(Token::TokenType::MINUS, new OperatorParselet());
 	parser.registerInfix(Token::TokenType::MULT, new OperatorParselet());
 
-	InterfaceExpression* testing = parser.parseExpression(0);
-	std::cout << testing->print() << std::endl;
+	std::string testingVar = parser.testing(0); 
+	
 } 
 
