@@ -29,6 +29,10 @@ public:
 	};
 	int prevPrecedence = 0;
 
+	// CLOX Variables 
+	Token* curr = &tokenStream[0];
+	Token* prev = 0; // mimics the first advance() in CLOX
+
 	Parser(std::vector<Token> tokenStream) : tokenStream(tokenStream) {};
 
 	Token* consume();
@@ -37,10 +41,14 @@ public:
 	void registerInfix(Token::TokenType type, InterfaceInfixParselet* ptr);
 	void printMaps();
 	int getPrecedenceNext();
-	int getPrecedence();
+	int getPrecedence(); 
+
+	// CLOX Methods
+	Token* advance(); // should return the prev token...
 
 	InterfaceExpression* parseExpression(int precedence);
 	InterfaceExpression* testing(int precedence);
+	std::string cTesting(int precedence);
 };	
 
 #endif 

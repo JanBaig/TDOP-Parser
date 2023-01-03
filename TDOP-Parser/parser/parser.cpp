@@ -3,6 +3,17 @@
 #include "../parselet/interface_prefix_parselet.h" // what was the forward declaration for then?
 #include "../parselet/interface_infix_parselet.h"
 
+// CLOX Methods
+
+Token* Parser::advance() {
+
+	prev = curr;
+	++curr;	 
+	return prev;
+}
+
+// -------------------------
+
 Token* Parser::consume() {
 
 	return currToken++; 
@@ -48,9 +59,16 @@ int Parser::getPrecedenceNext() {
 
 int Parser::getPrecedence() {
 	
-	Token* token = lookAhead();
-	if (infixMap.find(token->type) == infixMap.end()) { std::cout << "ERROR: Infix " << token->text << " Not Valid"; exit(0); }
+	// This throws an error after we return from the last stack frame. 
+	// It already reads the '3' when it calls testing() for the right but it ends up reading '3' again
+	// even after the token is already consumed! Should we have global state?
 
+	//Token* token = lookAhead();
+	
+	Token* token = curr;
+	
+	if (infixMap.find(token->type) == infixMap.end()) { std::cout << "ERROR: Infix " << token->text << " Not Valid"; exit(0); }	
+	
 	return precedenceMap[token->type];
 }
 
@@ -75,7 +93,7 @@ InterfaceExpression* Parser::parseExpression(int precedence) {
 	return leftExpression;
 }
 
- InterfaceExpression* Parser::testing(int precedence) {
+InterfaceExpression* Parser::testing(int precedence) {
 	
 	Token* token = consume();
 
@@ -90,8 +108,6 @@ InterfaceExpression* Parser::parseExpression(int precedence) {
 		
 		token = consume(); 
 
-		if (infixMap.find(token->type) == infixMap.end()) { std::cout << "ERROR: Infix Not Found"; exit(0); }
-
 		InterfaceInfixParselet* infixParselet = infixMap[token->type];
 		left = infixParselet->parse(*this, left, *token);
 		std::cout << left->print() << std::endl;
@@ -102,3 +118,22 @@ InterfaceExpression* Parser::parseExpression(int precedence) {
 	return left; // return left here
 } 
 
+std::string Parser::cTesting(int precedence) {
+
+	Token* token = advance();
+	
+	if (prefixMap.find(token->type) == prefixMap.end()) { std::cout << "ERROR: Prefix Not Found"; exit(0); }
+
+	InterfacePrefixParselet* prefixParselet = prefixMap[token->type];
+	InterfaceExpression* left = prefixParselet->parse(*this, *token);
+
+	while (precedence <= getPrecedence()) {
+		
+		token = advance(); // gets the infix
+		InterfaceInfixParselet* infixParselet = infixMap[token->type];
+		left = infixParselet->parse(*this, left, *token);
+
+	}
+
+	return "";
+}
