@@ -3,6 +3,7 @@
 
 std::string OperatorExpression::print() {
 	
-	std::string binaryExpr = "( " + OperatorExpression::left->print() + " " + OperatorExpression::operType + " " + OperatorExpression::right->print() + " )";
+	std::string binaryExpr = "( " + left->print() + " " + operType + " " + right->print() + " )";
 	return binaryExpr;
-}
+} 
+

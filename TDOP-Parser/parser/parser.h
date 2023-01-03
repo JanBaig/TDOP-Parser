@@ -22,10 +22,12 @@ public:
 	std::map<Token::TokenType, InterfacePrefixParselet*> prefixMap;
 	std::map<Token::TokenType, InterfaceInfixParselet*> infixMap;
 	std::map<Token::TokenType, int> precedenceMap = {
+		{Token::TokenType::EOL, 0},
 		{Token::TokenType::PLUS, 3},
 		{Token::TokenType::MINUS, 3},
 		{Token::TokenType::MULT, 4},
 	};
+	int prevPrecedence = 0;
 
 	Parser(std::vector<Token> tokenStream) : tokenStream(tokenStream) {};
 
@@ -38,7 +40,7 @@ public:
 	int getPrecedence();
 
 	InterfaceExpression* parseExpression(int precedence);
-	std::string testing(int precedence);
+	InterfaceExpression* testing(int precedence);
 };	
 
 #endif 

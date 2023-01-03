@@ -12,10 +12,10 @@ int main() {
 	// Will read from file later on
 	std::vector<Token> tokenStream = { 
 		Token(Token::TokenType::INTEGER, "2"),
-		Token(Token::TokenType::PLUS, "+"),
+		Token(Token::TokenType::MULT, "*"),
 		Token(Token::TokenType::INTEGER, "3"),
-		Token(Token::TokenType::PLUS, "*"),
-		Token(Token::TokenType::INTEGER, "10"),
+		//Token(Token::TokenType::PLUS, "+"),
+		//Token(Token::TokenType::INTEGER, "10"),
 		Token(Token::TokenType::EOL, "EOL")
 	};
 
@@ -27,7 +27,12 @@ int main() {
 	parser.registerInfix(Token::TokenType::MINUS, new OperatorParselet());
 	parser.registerInfix(Token::TokenType::MULT, new OperatorParselet());
 
-	std::string testingVar = parser.testing(0); 
+	parser.registerInfix(Token::TokenType::EOL, new OperatorParselet()); // parselet does not matter since no execution...
+
+	InterfaceExpression* testingVar = parser.testing(0);  
+
+	std::cout << testingVar->print() << std::endl;
+
 	
 } 
 

@@ -5,7 +5,7 @@
 
 Token* Parser::consume() {
 
-	return Parser::currToken++; 
+	return currToken++; 
 }  
 
 Token* Parser::lookAhead() {
@@ -16,27 +16,28 @@ Token* Parser::lookAhead() {
 
 void Parser::registerPrefix(Token::TokenType type, InterfacePrefixParselet* ptr) { 
 	
-	Parser::prefixMap[type] = ptr;
+	prefixMap[type] = ptr;
 } 
 
 void Parser::registerInfix(Token::TokenType type, InterfaceInfixParselet* ptr) {
 	
-	Parser::infixMap[type] = ptr;
+	infixMap[type] = ptr;
 }
 
 void Parser::printMaps() {
 
 	std::cout << "Prefix:\n";
-	for (auto i = Parser::prefixMap.begin(); i != Parser::prefixMap.end(); i++) {
+	for (auto i = prefixMap.begin(); i != prefixMap.end(); i++) {
 		std::cout << i->first << std::endl;
 	} 
 
 	std::cout << "Infix\n";
-	for (auto i = Parser::infixMap.begin(); i != Parser::infixMap.end(); i++) {
+	for (auto i = infixMap.begin(); i != infixMap.end(); i++) {
 		std::cout << i->first << std::endl;
 	}
 }
 
+// Delete this later
 int Parser::getPrecedenceNext() {
 	// Gets precedence for the next token
 	Token* old = Parser::currToken;
@@ -47,45 +48,57 @@ int Parser::getPrecedenceNext() {
 
 int Parser::getPrecedence() {
 	
-	Token* token = lookAhead(); // change to lookAhead
-	auto infix = Parser::infixMap.find(token->type);
-	if (infix == Parser::infixMap.end()) { std::cout << "ERROR: Infix " << token->text << " Not Valid"; exit(0); }
+	Token* token = lookAhead();
+	if (infixMap.find(token->type) == infixMap.end()) { std::cout << "ERROR: Infix " << token->text << " Not Valid"; exit(0); }
 
-	return Parser::precedenceMap[token->type];
+	return precedenceMap[token->type];
 }
 
 InterfaceExpression* Parser::parseExpression(int precedence) {
 
-	auto prefix = Parser::prefixMap.find(currToken->type); 
-	if (prefix == Parser::prefixMap.end()) { std::cout << "ERROR: Prefix Not Found"; exit(0); }
+	auto prefix = prefixMap.find(currToken->type); 
+	if (prefix == prefixMap.end()) { std::cout << "ERROR: Prefix Not Found"; exit(0); }
 	
-	InterfacePrefixParselet* prefixParselet = Parser::prefixMap[currToken->type];
+	InterfacePrefixParselet* prefixParselet = prefixMap[currToken->type];
 	InterfaceExpression* leftExpression = prefixParselet->parse(*this, *currToken);
 ;
  	while (precedence < getPrecedenceNext()) { // next token have a higher precedence?
 		consume(); 
 
-		auto infix = Parser::infixMap.find(currToken->type);
-		if (infix == Parser::infixMap.end()) { return leftExpression; }
+		auto infix = infixMap.find(currToken->type);
+		if (infix == infixMap.end()) { return leftExpression; }
 
-		InterfaceInfixParselet* infixParselet = Parser::infixMap[currToken->type];
+		InterfaceInfixParselet* infixParselet = infixMap[currToken->type];
 		leftExpression = infixParselet->parse(*this, leftExpression, *currToken);
 	}
 
 	return leftExpression;
 }
 
-std::string Parser::testing(int precedence) {
+ InterfaceExpression* Parser::testing(int precedence) {
 	
 	Token* token = consume();
 
-	auto prefix = Parser::prefixMap.find(token->type);
-	if (prefix == Parser::prefixMap.end()) { std::cout << "ERROR: Prefix Not Found"; exit(0); }
+	if (prefixMap.find(token->type) == prefixMap.end()) { std::cout << "ERROR: Prefix Not Found"; exit(0); }
 
-	InterfacePrefixParselet* prefixParselet = Parser::prefixMap[token->type];
+	InterfacePrefixParselet* prefixParselet = prefixMap[token->type];
 	InterfaceExpression* left = prefixParselet->parse(*this, *token); 
+	
+	while (precedence < getPrecedence()) {
+		
+		prevPrecedence = getPrecedence(); // for passing into the next call for this function
+		
+		token = consume(); 
 
+		if (infixMap.find(token->type) == infixMap.end()) { std::cout << "ERROR: Infix Not Found"; exit(0); }
 
-	return "";
+		InterfaceInfixParselet* infixParselet = infixMap[token->type];
+		left = infixParselet->parse(*this, left, *token);
+		std::cout << left->print() << std::endl;
+
+	}   
+
+	std::cout << left->print() << std::endl;
+	return left; // return left here
 } 
 
