@@ -3,8 +3,8 @@
 
 InterfaceExpression* OperatorParselet::parse(Parser parser, InterfaceExpression* left, Token token) {
 	
-	// Need to return the precedence of the previous operator... Right now on non-infix token
-	InterfaceExpression* right = parser.testing(parser.prevPrecedence); 
+	int precedence = parser.precedenceMap[token.type] + 1;
+	InterfaceExpression* right = parser.cTesting(precedence);
 	return new OperatorExpression(left, token.text, right);
 }
 

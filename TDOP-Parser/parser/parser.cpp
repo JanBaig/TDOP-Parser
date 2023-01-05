@@ -118,7 +118,7 @@ InterfaceExpression* Parser::testing(int precedence) {
 	return left; // return left here
 } 
 
-std::string Parser::cTesting(int precedence) {
+InterfaceExpression* Parser::cTesting(int precedence) {
 
 	Token* token = advance();
 	
@@ -135,5 +135,5 @@ std::string Parser::cTesting(int precedence) {
 
 	}
 
-	return "";
+	return left;
 }
