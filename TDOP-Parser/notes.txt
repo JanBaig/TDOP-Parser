@@ -48,3 +48,6 @@ Parselets:
 Prefix can shift into one single class....
 
 
+CURRENT: Learn why the values of the pointer are not the same when we switch to
+		back from outside stack frame to the original... should I use static variables?
+
