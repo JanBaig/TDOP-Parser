@@ -48,6 +48,10 @@ Parselets:
 Prefix can shift into one single class....
 
 
-CURRENT: Learn why the values of the pointer are not the same when we switch to
+CURRENT: Learn why the values of the pointer are not the same when we switch
 		back from outside stack frame to the original... should I use static variables?
 
+We are modifying the attributes of the parser class when we move out of the main stack frame. 
+The issue: we are passing the parser class by value and NOT by reference. This means that the value is copied 
+into the other stack frame from the changes made are not universal since it does not affect the address of the 
+parser object directly!

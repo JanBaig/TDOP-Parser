@@ -87,7 +87,7 @@ InterfaceExpression* Parser::parseExpression(int precedence) {
 		if (infix == infixMap.end()) { return leftExpression; }
 
 		InterfaceInfixParselet* infixParselet = infixMap[currToken->type];
-		leftExpression = infixParselet->parse(*this, leftExpression, *currToken);
+		leftExpression = infixParselet->parse(this, leftExpression, *currToken);
 	}
 
 	return leftExpression;
@@ -109,7 +109,7 @@ InterfaceExpression* Parser::testing(int precedence) {
 		token = consume(); 
 
 		InterfaceInfixParselet* infixParselet = infixMap[token->type];
-		left = infixParselet->parse(*this, left, *token);
+		left = infixParselet->parse(this, left, *token);
 		std::cout << left->print() << std::endl;
 
 	}   
@@ -130,9 +130,8 @@ InterfaceExpression* Parser::cTesting(int precedence) {
 	while (precedence <= getPrecedence()) {
 		
 		token = advance(); // gets the infix
-		InterfaceInfixParselet* infixParselet = infixMap[token->type];
-		left = infixParselet->parse(*this, left, *token);
-
+		InterfaceInfixParselet* infixParselet = infixMap[token->type]; 
+		left = infixParselet->parse(this, left, *token); 
 	}
 
 	return left;

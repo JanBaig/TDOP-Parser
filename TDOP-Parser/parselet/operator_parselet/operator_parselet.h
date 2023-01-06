@@ -7,7 +7,7 @@ class OperatorParselet : public InterfaceInfixParselet {
 
 public:
 
-	InterfaceExpression* parse(Parser parser, InterfaceExpression* left, Token token);
+	InterfaceExpression* parse(Parser* parser, InterfaceExpression* left, Token token);
 }; 
 
 #endif

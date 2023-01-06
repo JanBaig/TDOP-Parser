@@ -12,9 +12,9 @@ int main() {
 	// Will read from file later on
 	std::vector<Token> tokenStream = { 
 		Token(Token::TokenType::INTEGER, "2"),
-		Token(Token::TokenType::MULT, "*"),
-		Token(Token::TokenType::INTEGER, "2"),
 		Token(Token::TokenType::PLUS, "+"),
+		Token(Token::TokenType::INTEGER, "2"),
+		Token(Token::TokenType::MULT, "*"),
 		Token(Token::TokenType::INTEGER, "3"),
 		Token(Token::TokenType::EOL, "EOL")
 	};
@@ -31,5 +31,6 @@ int main() {
 
 	InterfaceExpression* testingVar = parser.cTesting(0);  
 	
+	std::cout << testingVar->print() << std::endl;
 } 
 
