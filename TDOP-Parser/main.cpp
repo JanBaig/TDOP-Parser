@@ -26,8 +26,7 @@ int main() {
 	parser.registerInfix(Token::TokenType::PLUS, new OperatorParselet());
 	parser.registerInfix(Token::TokenType::MINUS, new OperatorParselet());
 	parser.registerInfix(Token::TokenType::MULT, new OperatorParselet());
-
-	parser.registerInfix(Token::TokenType::EOL, new OperatorParselet()); // parselet does not matter since no execution...?
+	parser.registerInfix(Token::TokenType::EOL, new OperatorParselet()); // May change parselet
 
 	InterfaceExpression* testingVar = parser.cTesting(0);  
 	
