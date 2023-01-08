@@ -13,6 +13,7 @@ public:
 		NAME, 
 		MULT, 
 		INTEGER, 
+		DIVIDE, 
 		EOL
 	};
 

@@ -53,7 +53,7 @@ InterfaceExpression* Parser::cTesting(int precedence) {
 
 	while (precedence <= getPrecedence()) {
 		
-		token = advance(); // gets the infix
+		token = advance();
 		InterfaceInfixParselet* infixParselet = infixMap[token->type]; 
 		left = infixParselet->parse(this, left, *token); 
 	}

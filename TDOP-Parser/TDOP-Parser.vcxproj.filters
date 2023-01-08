@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes.txt" />
+    <Text Include="personalNotes.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="parser\parser.h">

@@ -12,10 +12,12 @@ int main() {
 	// Will read from file later on
 	std::vector<Token> tokenStream = { 
 		Token(Token::TokenType::INTEGER, "2"),
-		Token(Token::TokenType::PLUS, "+"),
-		Token(Token::TokenType::INTEGER, "2"),
 		Token(Token::TokenType::MULT, "*"),
-		Token(Token::TokenType::INTEGER, "3"),
+		Token(Token::TokenType::INTEGER, "10"),
+		Token(Token::TokenType::DIVIDE, "/"),
+		Token(Token::TokenType::INTEGER, "5"),
+		Token(Token::TokenType::MINUS, "-"),
+		Token(Token::TokenType::INTEGER, "1"),
 		Token(Token::TokenType::EOL, "EOL")
 	};
 
@@ -26,6 +28,7 @@ int main() {
 	parser.registerInfix(Token::TokenType::PLUS, new OperatorParselet());
 	parser.registerInfix(Token::TokenType::MINUS, new OperatorParselet());
 	parser.registerInfix(Token::TokenType::MULT, new OperatorParselet());
+	parser.registerInfix(Token::TokenType::DIVIDE, new OperatorParselet());
 	parser.registerInfix(Token::TokenType::EOL, new OperatorParselet()); // May change parselet
 
 	InterfaceExpression* testingVar = parser.cTesting(0);  

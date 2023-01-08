@@ -24,30 +24,24 @@ public:
 	std::map<Token::TokenType, int> precedenceMap = {
 		{Token::TokenType::EOL, -1},
 		{Token::TokenType::PLUS, 3},
-		{Token::TokenType::MINUS, 3},
+		{Token::TokenType::MINUS, 2},
 		{Token::TokenType::MULT, 4},
+		{Token::TokenType::DIVIDE, 5},
 	};
 	int prevPrecedence = 0;
-
-	// CLOX Variables 
+ 
 	Token* curr = &tokenStream[0];
-	Token* prev = 0; // mimics the first advance() in CLOX
+	Token* prev = 0;
 
 	Parser(std::vector<Token> tokenStream) : tokenStream(tokenStream) {};
 
-	Token* consume();
-	Token* lookAhead();
 	void registerPrefix(Token::TokenType type, InterfacePrefixParselet* ptr);
 	void registerInfix(Token::TokenType type, InterfaceInfixParselet* ptr);
 	void printMaps();
-	int getPrecedenceNext();
 	int getPrecedence(); 
 
-	// CLOX Methods
-	Token* advance(); // should return the prev token...
+	Token* advance();
 
-	InterfaceExpression* parseExpression(int precedence);
-	InterfaceExpression* testing(int precedence);
 	InterfaceExpression* cTesting(int precedence);
 };	
 
