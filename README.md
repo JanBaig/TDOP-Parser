@@ -7,11 +7,11 @@ This program can successfully parse a given expression in accordance to a predef
 
 ## Example
 ```
-2 * 10 / 5 - 1
+2 * 10 / 5 - 1 + 4
 ```
 In accordance to BEDMAS, the above expression can be parsed into:
 ```
-( ( 2 * ( 10 / 5 ) ) - 1 )
+( ( 2 * ( 10 / 5 ) ) - ( 1 + 4 ) )
 ```
 
 ## Future Goals
