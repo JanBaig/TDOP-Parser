@@ -4,11 +4,13 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <stack>
 
 #include "../token/token.h"
 #include "../expressions/interface_expression.h"
 
 // Forward declaration
+
 class InterfacePrefixParselet; 
 class InterfaceInfixParselet;
 
@@ -19,6 +21,9 @@ public:
 	std::vector<Token> tokenStream;
 	Token* currToken = &tokenStream[0];
 	Token* nextToken = currToken;
+	
+	std::stack<std::string> stackTest;
+	
 	std::map<Token::TokenType, InterfacePrefixParselet*> prefixMap;
 	std::map<Token::TokenType, InterfaceInfixParselet*> infixMap;
 	std::map<Token::TokenType, int> precedenceMap = {

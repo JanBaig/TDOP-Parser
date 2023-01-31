@@ -1,11 +1,33 @@
 
 Implementing a Top Down Recursive Decent Parser AKA Pratt Parsing
 
+TASKS:
+	0. Understand Grammars, Scanning, Parsing again.
+	1. Parsing
+		- Associativity in parsing (Left and right associative and differences)
+		- Seperate Class for Precedence (More readable)
+	2. Create Lexer
+	3. Create stack-based interpreter
+
+
 NOTES: 
 
 	- Hard code the tokens for now - main focus is to parse to a nice data structure
+	- Will have to read from a file of mock token list later on
 	- Tokens -> Specific Class Object that implements interface 'Expression' - used for pretty printing
 	- Multiple subclasses implement the Expression interface. Eg ConditionalExpression
-	- The entire purpose of using a vector is to push back values known at runtime
-	  Will have to read from a file of mock token list later on
-	- =0 after a virtual function override is an error! Only use =0  for the abstract class
+	- =0 after a virtual function override is an error! Only use =0 for the abstract class
+	- The parser should have a stack and 
+
+
+	Precedence:
+	PREC_TERM,        -> 1 + -
+	PREC_FACTOR,      -> 2 * /
+	PREC_UNARY,       -> 3 ! - (Implement later)  
+
+
+	account for different integers  
+
+	-------------
+
+

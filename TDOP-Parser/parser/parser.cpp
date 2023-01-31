@@ -50,12 +50,21 @@ InterfaceExpression* Parser::cTesting(int precedence) {
 
 	InterfacePrefixParselet* prefixParselet = prefixMap[token->type];
 	InterfaceExpression* left = prefixParselet->parse(*this, *token);
+	
+	Parser::stackTest.push(left->print());
 
 	while (precedence <= getPrecedence()) {
 		
 		token = advance();
+
+		// Parser::stackTest.push(token->text);
+
 		InterfaceInfixParselet* infixParselet = infixMap[token->type]; 
-		left = infixParselet->parse(this, left, *token); 
+		left = infixParselet->parse(this, left, *token);  
+
+		Parser::stackTest.push(left->print());
+		Parser::stackTest.push(token->text);
+
 	}
 
 	return left;
