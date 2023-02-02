@@ -46,7 +46,7 @@ int main() {
 	InterfaceExpression* testingVar = parser.cTesting(0);  
 	
 	std::cout << "Precedence Parsing: \n\n" << testingVar->print() << std::endl; 
-	std::cout << "\nStack-Based Interpreter: \n\n" << std::endl;
-	
+	std::cout << "\nStack-Based Interpreter: \n\n" << std::endl; 
+
 } 
 

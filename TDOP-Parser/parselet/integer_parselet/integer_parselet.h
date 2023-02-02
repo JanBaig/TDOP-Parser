@@ -9,7 +9,7 @@ public:
 
 	IntegerParselet() = default;
 
-	InterfaceExpression* parse(Parser parse, Token token);
+	InterfaceExpression* parse(Parser* parser, Token token);
 };
 
 
