@@ -10,7 +10,7 @@ TASKS:
 	3. Create stack-based interpreter
 
 
-NOTES: 
+NOTES:    
 
 	- Hard code the tokens for now - main focus is to parse to a nice data structure
 	- Will have to read from a file of mock token list later on
