@@ -22,7 +22,7 @@ public:
 	Token* currToken = &tokenStream[0];
 	Token* nextToken = currToken;
 	
-	std::stack<std::string> stackTest;
+	std::stack<int> stackTest;
 	
 	std::map<Token::TokenType, InterfacePrefixParselet*> prefixMap;
 	std::map<Token::TokenType, InterfaceInfixParselet*> infixMap;

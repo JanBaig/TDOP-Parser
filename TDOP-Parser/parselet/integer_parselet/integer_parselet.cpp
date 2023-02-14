@@ -3,6 +3,5 @@
 
 InterfaceExpression* IntegerParselet::parse(Parser* parser, Token token) {
 		
-	parser->stackTest.push(token.text);
 	return new IntegerExpression(token.text);
 } 

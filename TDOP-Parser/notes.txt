@@ -30,4 +30,8 @@ NOTES:
 
 	-------------
 
+	Error because of the fact that (3 * 4) is being printed and the left arg for the future operation 
+	is not being simplified. Need to simply evaluate before adding the argument into the 
+	operatorExpression (can step through code to verify)
+
 

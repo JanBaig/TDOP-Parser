@@ -29,6 +29,8 @@ int main() {
 		Token(Token::TokenType::INTEGER, "3"),
 		Token(Token::TokenType::PLUS, "+"),
 		Token(Token::TokenType::INTEGER, "4"),
+		Token(Token::TokenType::MULT, "*"),
+		Token(Token::TokenType::INTEGER, "4"),
 		Token(Token::TokenType::EOL, "EOL")
 
 	};
@@ -45,8 +47,10 @@ int main() {
 
 	InterfaceExpression* testingVar = parser.cTesting(0);  
 	
-	std::cout << "Precedence Parsing: \n\n" << testingVar->print() << std::endl; 
-	std::cout << "\nStack-Based Interpreter: \n\n" << std::endl; 
+	std::cout << "\nPrecedence Parsing: \n\n" << testingVar->print() << std::endl; 
+	std::cout << "\nStack-Based Interpreter\n" << std::endl; 
+
+	std::cout << "Result: " << parser.stackTest.top() << std::endl;
 
 } 
 
