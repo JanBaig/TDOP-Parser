@@ -16,6 +16,6 @@ In accordance to BEDMAS, the above expression can be parsed into:
 
 ## Future Goals
 - [x] Implement stack-based interpreter
-- [ ] Implement a lexer to spit out tokens
+- [x] Implement a custom lexer
 
 
