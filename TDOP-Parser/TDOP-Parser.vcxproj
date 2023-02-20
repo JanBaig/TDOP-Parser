@@ -135,6 +135,7 @@
     <ClCompile Include="parselet\name_parselet\name_parselet.cpp" />
     <ClCompile Include="parselet\operator_parselet\operator_parselet.cpp" />
     <ClCompile Include="parser\parser.cpp" />
+    <ClCompile Include="scanner\scanner.cpp" />
     <Text Include="personalNotes.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +152,7 @@
     <ClInclude Include="parselet\name_parselet\name_parselet.h" />
     <ClInclude Include="parselet\operator_parselet\operator_parselet.h" />
     <ClInclude Include="parser\parser.h" />
+    <ClInclude Include="scanner\scanner.h" />
     <ClInclude Include="token\token.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

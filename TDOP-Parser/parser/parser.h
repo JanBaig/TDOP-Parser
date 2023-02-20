@@ -44,9 +44,8 @@ public:
 	void registerInfix(Token::TokenType type, InterfaceInfixParselet* ptr);
 	void printMaps();
 	int getPrecedence(); 
-
 	Token* advance();
-
+	void stackEval(Token* token);
 	InterfaceExpression* cTesting(int precedence);
 };	
 

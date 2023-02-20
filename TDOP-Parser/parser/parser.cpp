@@ -42,6 +42,23 @@ int Parser::getPrecedence() {
 	return precedenceMap[token->type];
 }
 
+void Parser::stackEval(Token * token) {
+
+	// Pop the values from stack
+	int b = stackTest.top();
+	stackTest.pop();
+
+	int a = stackTest.top();
+	stackTest.pop();
+
+	int result = 0;
+
+	if (token->type == Token::TokenType::MULT) { result = a * b; }
+	if (token->type == Token::TokenType::PLUS) { result = a + b; }
+		
+	stackTest.push(result);
+}
+
 InterfaceExpression* Parser::cTesting(int precedence) {
 
 	Token* token = advance();
@@ -51,7 +68,6 @@ InterfaceExpression* Parser::cTesting(int precedence) {
 	InterfacePrefixParselet* prefixParselet = prefixMap[token->type];
 	InterfaceExpression* left = prefixParselet->parse(this, *token);
 	
-	// Pushing the left hand expression to stack
 	stackTest.push(stoi(left->print()));
 
 	while (precedence <= getPrecedence()) {
@@ -61,19 +77,8 @@ InterfaceExpression* Parser::cTesting(int precedence) {
 		InterfaceInfixParselet* infixParselet = infixMap[token->type]; 
 		left = infixParselet->parse(this, left, *token);  
 
-		// Pop the values from stack
-		int b = stackTest.top();
-		stackTest.pop();
-
-		int a = stackTest.top();
-		stackTest.pop();
-
-		int result = 0;
-
-		if (token->type == Token::TokenType::MULT) { result = a * b; }
-		if (token->type == Token::TokenType::PLUS) { result = a + b; }
+		stackEval(token);
 		
-		stackTest.push(result);
 	}
 
 	return left;

@@ -7,50 +7,47 @@
 #include "parselet/name_parselet/name_parselet.h"
 #include "parselet/integer_parselet/integer_parselet.h"
 #include "parselet/operator_parselet/operator_parselet.h"
+#include "scanner/scanner.h"
 
-int main() {
+static void registerGrammmar(Parser* parser) {
 
-	// Will read from file later on
-	std::vector<Token> tokenStream = { 
+	parser->registerPrefix(Token::TokenType::NAME, new NameParselet());
+	parser->registerPrefix(Token::TokenType::INTEGER, new IntegerParselet());
+	parser->registerInfix(Token::TokenType::PLUS, new OperatorParselet());
+	parser->registerInfix(Token::TokenType::MINUS, new OperatorParselet());
+	parser->registerInfix(Token::TokenType::MULT, new OperatorParselet());
+	parser->registerInfix(Token::TokenType::DIVIDE, new OperatorParselet());
+	parser->registerInfix(Token::TokenType::EOL, new OperatorParselet()); // May change parselet
 
-		/*Token(Token::TokenType::INTEGER, "2"),
-		Token(Token::TokenType::MULT, "*"),
-		Token(Token::TokenType::INTEGER, "10"),
-		Token(Token::TokenType::DIVIDE, "/"),
-		Token(Token::TokenType::INTEGER, "5"),
-		Token(Token::TokenType::MINUS, "-"),
-		Token(Token::TokenType::INTEGER, "1"),
-		Token(Token::TokenType::PLUS, "+"),
-		Token(Token::TokenType::INTEGER, "1"),
-		Token(Token::TokenType::EOL, "EOL")*/ 
+}
 
-		Token(Token::TokenType::INTEGER, "2"),
-		Token(Token::TokenType::MULT, "*"),
-		Token(Token::TokenType::INTEGER, "3"),
-		Token(Token::TokenType::PLUS, "+"),
-		Token(Token::TokenType::INTEGER, "4"),
-		Token(Token::TokenType::MULT, "*"),
-		Token(Token::TokenType::INTEGER, "4"),
-		Token(Token::TokenType::EOL, "EOL")
+static void runRepl() {
 
-	};
-
-	Parser parser(tokenStream);  
-
-	parser.registerPrefix(Token::TokenType::NAME, new NameParselet());
-	parser.registerPrefix(Token::TokenType::INTEGER, new IntegerParselet());
-	parser.registerInfix(Token::TokenType::PLUS, new OperatorParselet());
-	parser.registerInfix(Token::TokenType::MINUS, new OperatorParselet());
-	parser.registerInfix(Token::TokenType::MULT, new OperatorParselet());
-	parser.registerInfix(Token::TokenType::DIVIDE, new OperatorParselet());
-	parser.registerInfix(Token::TokenType::EOL, new OperatorParselet()); // May change parselet
-
-	InterfaceExpression* testingVar = parser.cTesting(0);  
+	std::string userIn;
 	
-	std::cout << "\nPrecedence Parsing: \n\n" << testingVar->print() << std::endl; 
-	std::cout << "\nStack-Based Interpreter\n" << std::endl; 
+	// Iterate once for now 
+	for (;;) {
+		std::cout << "> ";
+		std::getline(std::cin, userIn);
 
-	std::cout << "Result: " << parser.stackTest.top() << std::endl;
+		Scanner scanner(userIn);
+		std::vector<Token> tokenStream = scanner.scanTokens();
+
+		Parser parser(tokenStream);
+		registerGrammmar(&parser);
+
+		InterfaceExpression* testingvar = parser.cTesting(0);
+
+		// printing results
+		std::cout << "\nprecedence parsing: \n\n" << testingvar->print() << std::endl;
+		std::cout << "\nstack-based interpreter\n" << std::endl;
+		std::cout << "result: " << parser.stackTest.top() << std::endl;
+	}
+}
+
+int main(int argc, char* argv[]) {
+
+	if (argc == 1) { runRepl(); } 
 
 } 
 

@@ -39,6 +39,9 @@
     <ClCompile Include="expressions\operator_expression\operator_expression.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="scanner\scanner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes.txt" />
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="expressions\operator_expression\operator_expression.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scanner\scanner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

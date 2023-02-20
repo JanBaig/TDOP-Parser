@@ -6,14 +6,10 @@
 InterfaceExpression* OperatorParselet::parse(Parser* parser, InterfaceExpression* left, Token token) {
 	
 	int precedence = parser->precedenceMap[token.type] + 1;
+
  	InterfaceExpression* right = parser->cTesting(precedence);
 	
 	std::cout << "OperatorExpression" << " Left: " << left->print() << " Right: " << right->print() << std::endl;
-
-
-
-
-	// Fill in the stack when parsing and then evaluate here! 
 
 	return new OperatorExpression(left, token.text, right);
 }
