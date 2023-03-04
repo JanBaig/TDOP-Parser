@@ -55,7 +55,7 @@ void Parser::stackEval(Token * token) {
 
 	if (token->type == Token::TokenType::MULT) { result = a * b; }
 	if (token->type == Token::TokenType::PLUS) { result = a + b; }
-		
+	
 	stackTest.push(result);
 }
 
@@ -78,7 +78,6 @@ InterfaceExpression* Parser::cTesting(int precedence) {
 		left = infixParselet->parse(this, left, *token);  
 
 		stackEval(token);
-		
 	}
 
 	return left;

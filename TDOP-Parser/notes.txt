@@ -2,7 +2,6 @@
 Implementing a Top Down Recursive Decent Parser AKA Pratt Parsing
 
 TASKS:
-	- Create Lexer
 	- Seperate Class for Precedence (More readable)
 	- Add brackets
 	- Add unary operators 
