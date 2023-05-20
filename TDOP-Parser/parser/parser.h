@@ -24,8 +24,6 @@ public:
 	
 	std::stack<int> stackTest;
 	
-	std::map<Token::TokenType, InterfacePrefixParselet*> prefixMap;
-	std::map<Token::TokenType, InterfaceInfixParselet*> infixMap;
 	std::map<Token::TokenType, int> precedenceMap = {
 		{Token::TokenType::EOL, -1},
 		{Token::TokenType::PLUS, 3},
@@ -37,16 +35,14 @@ public:
  
 	Token* curr = &tokenStream[0];
 	Token* prev = 0;
-
+	 
 	Parser(std::vector<Token> tokenStream) : tokenStream(tokenStream) {};
 
-	void registerPrefix(Token::TokenType type, InterfacePrefixParselet* ptr);
-	void registerInfix(Token::TokenType type, InterfaceInfixParselet* ptr);
 	void printMaps();
 	int getPrecedence(); 
 	Token* advance();
 	void stackEval(Token* token);
-	InterfaceExpression* cTesting(int precedence);
+	InterfaceExpression* parseExpression(int precedence);
 };	
 
 #endif 

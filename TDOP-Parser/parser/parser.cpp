@@ -1,23 +1,29 @@
 #include "parser.h"
 #include <iostream>
-#include "../parselet/interface_prefix_parselet.h" // what was the forward declaration for then?
+#include "../parselet/interface_prefix_parselet.h"
 #include "../parselet/interface_infix_parselet.h"
+#include "../parselet/integer_parselet/integer_parselet.h"
+#include "../parselet//name_parselet//name_parselet.h"
+#include "../parselet/operator_parselet/operator_parselet.h"
+
+std::map<Token::TokenType, InterfacePrefixParselet*> prefixMap = {
+		{Token::TokenType::NAME, new NameParselet()},
+		{Token::TokenType::INTEGER, new IntegerParselet()},
+};
+
+std::map<Token::TokenType, InterfaceInfixParselet*> infixMap = {
+		{Token::TokenType::PLUS, new OperatorParselet()},
+		{Token::TokenType::MINUS, new OperatorParselet()},
+		{Token::TokenType::MULT, new OperatorParselet()},
+		{Token::TokenType::DIVIDE, new OperatorParselet()},
+		{Token::TokenType::EOL, new OperatorParselet()},
+};
 
 Token* Parser::advance() {
 
 	prev = curr;
 	++curr;	 
 	return prev;
-}
-
-void Parser::registerPrefix(Token::TokenType type, InterfacePrefixParselet* ptr) { 
-	
-	prefixMap[type] = ptr;
-} 
-
-void Parser::registerInfix(Token::TokenType type, InterfaceInfixParselet* ptr) {
-	
-	infixMap[type] = ptr;
 }
 
 void Parser::printMaps() {
@@ -51,15 +57,17 @@ void Parser::stackEval(Token * token) {
 	int a = stackTest.top();
 	stackTest.pop();
 
-	int result = 0;
+	float result = 0;
 
 	if (token->type == Token::TokenType::MULT) { result = a * b; }
+	if (token->type == Token::TokenType::DIVIDE) { result = a / b; }
 	if (token->type == Token::TokenType::PLUS) { result = a + b; }
+	if (token->type == Token::TokenType::MINUS) { result = a - b; }
 	
 	stackTest.push(result);
 }
 
-InterfaceExpression* Parser::cTesting(int precedence) {
+InterfaceExpression* Parser::parseExpression(int precedence) {
 
 	Token* token = advance();
 	

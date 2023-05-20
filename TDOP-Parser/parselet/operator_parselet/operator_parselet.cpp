@@ -7,9 +7,9 @@ InterfaceExpression* OperatorParselet::parse(Parser* parser, InterfaceExpression
 	
 	int precedence = parser->precedenceMap[token.type] + 1;
 
- 	InterfaceExpression* right = parser->cTesting(precedence);
+ 	InterfaceExpression* right = parser->parseExpression(precedence);
 	
-	std::cout << "OperatorExpression" << " Left: " << left->print() << " Right: " << right->print() << std::endl;
+	std::cout << "Left: " << left->print() << ", Right: " << right->print() << ", Operator: " << token.text << std::endl;
 
 	return new OperatorExpression(left, token.text, right);
 }
