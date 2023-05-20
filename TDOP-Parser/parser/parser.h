@@ -22,7 +22,7 @@ public:
 	Token* currToken = &tokenStream[0];
 	Token* nextToken = currToken;
 	
-	std::stack<int> stackTest;
+	std::stack<double> stackTest;
 	
 	std::map<Token::TokenType, int> precedenceMap = {
 		{Token::TokenType::EOL, -1},

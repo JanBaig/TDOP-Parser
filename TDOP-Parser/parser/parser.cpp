@@ -51,13 +51,13 @@ int Parser::getPrecedence() {
 void Parser::stackEval(Token * token) {
 
 	// Pop the values from stack
-	int b = stackTest.top();
+	double b = stackTest.top();
 	stackTest.pop();
 
-	int a = stackTest.top();
+	double a = stackTest.top();
 	stackTest.pop();
 
-	float result = 0;
+	double result = 0;
 
 	if (token->type == Token::TokenType::MULT) { result = a * b; }
 	if (token->type == Token::TokenType::DIVIDE) { result = a / b; }

@@ -29,5 +29,6 @@ Interpreter results:
 - [x] Implement a Custom Lexer
 - [x] Implement a Stack-based Interpreter
 - [ ] Support for Unary & Ternary Operators
-- [ ] Works with floating point numbers 
+- [ ] Allow decimal values as input 
+- [ ] Create User Interface
 

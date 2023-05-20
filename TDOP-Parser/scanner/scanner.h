@@ -14,7 +14,6 @@ public:
 	int start = 0;
 	int current = 0;
 
-
 	Scanner(std::string source) : source(source) {};
 
 	std::vector<Token> scanTokens();
