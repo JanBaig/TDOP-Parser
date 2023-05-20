@@ -10,7 +10,7 @@ static void runRepl() {
 
 	std::string userIn;
 	
-	// Iterate once for now 
+	// Iterate once for now  
 	for (;;) {
 		std::cout << "> ";
 		std::getline(std::cin, userIn);
