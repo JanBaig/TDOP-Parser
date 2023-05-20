@@ -17,7 +17,7 @@ Interpreter results:
 -1 
 ```
 
-### Precedence Table 
+## Precedence Table (BEDMAS) 
 | Operator      | Precedence |
 | ----------- | ----------- |
 | `-`   | 0       |
