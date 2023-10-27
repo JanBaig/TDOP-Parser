@@ -6,7 +6,7 @@ The technique combines the best properties of recursive descent and operator pre
 This program can successfully parse and evaluate a given expression in accordance to a predefined set of precedence rules.
 
 ## Example
-In accordance to BEDMAS, the input expression `2 * 10 / 5 - 1 + 4` can be parsed and evaluated to:
+In accordance to BEDMAS, the input expression `2 * 10 / 5 - 1 + 4` can be successfully parsed and evaluated. The following is the output: 
 ```
 > 2 * 10 / 5 - 1 + 4
 
