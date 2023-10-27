@@ -14,7 +14,13 @@ Precedence Parsing:
 ( ( 2 * ( 10 / 5 ) ) - ( 1 + 4 ) )
 
 Interpreter results:
--1 
+-1
+
+Tree Structure:
+Left: 10, Right: 5, Operator: /
+Left: 2, Right: ( 10 / 5 ), Operator: *
+Left: 1, Right: 4, Operator: +
+Left: ( 2 * ( 10 / 5 ) ), Right: ( 1 + 4 ), Operator: -
 ```
 
 ## Precedence Table (BEDMAS) 
